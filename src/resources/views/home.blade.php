@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'TimeManager/home')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -20,4 +22,6 @@
         </div>
     </div>
 </div>
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
 @endsection
