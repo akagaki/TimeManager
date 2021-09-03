@@ -11,11 +11,17 @@ use App\Models\Work;
 
 class ApiController extends Controller
 {
-    /// ログイン情報取得
+    // ログイン情報取得
     public function loginUser()
     {
         $loginUser = Auth::user();
         return $loginUser;
+    }
+    // ワーク一覧取得
+    public function userWorks()
+    {
+        $userWorks = Auth::user()->works->sortByDesc('id')->values();
+        return $userWorks;
     }
 
     // 新規ワーク登録

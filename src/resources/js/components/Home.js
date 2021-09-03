@@ -1,11 +1,13 @@
 import React from "react"
 import WorkAdd from "./workAdd";
+import WorkIndex from "./workIndex";
 
 class Home extends React.Component {
   constructor(){
       super()
       this.state = {
         loginUser: [],
+        userWorks: [],
       }
       this.reload=this.reload.bind(this);
   }
@@ -15,8 +17,12 @@ class Home extends React.Component {
       // ログインユーザー情報
       const userdata = await fetch("/api/loginUser");
       const user = await userdata.json();    
+      // ユーザーワーク一覧
+      const workData = await fetch("/api/userWorks");
+      const works = await workData.json();
         this.setState({
           loginUser: user,
+          userWorks: works,
         });
       }
       load();
@@ -28,12 +34,14 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <div>ワーク一覧</div>
+        <div>タイマー</div>
+        <WorkIndex 
+          workIndex={this.state.userWorks}
+        />
         <WorkAdd 
           loginUserId={this.state.loginUser.id}
           reload={this.reload}
         />
-        <div>タイマー</div>
         <div>ワーク詳細</div>
       </div>
     );
