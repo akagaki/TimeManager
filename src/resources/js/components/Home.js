@@ -1,4 +1,5 @@
 import React from "react"
+import WorkAdd from "./workAdd";
 
 class Home extends React.Component {
   constructor(){
@@ -27,9 +28,13 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <div>{this.state.loginUser.name}</div>
-        <div>メニューカテゴリー</div>
-        <div>メニュー詳細</div>
+        <div>ワーク一覧</div>
+        <WorkAdd 
+          loginUserId={this.state.loginUser.id}
+          reload={this.reload}
+        />
+        <div>タイマー</div>
+        <div>ワーク詳細</div>
       </div>
     );
   }

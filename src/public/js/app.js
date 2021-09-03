@@ -1936,7 +1936,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _workAdd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./workAdd */ "./resources/js/components/workAdd.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -1964,6 +1965,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -2038,13 +2040,16 @@ var Home = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          children: this.state.loginUser.name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          children: "\u30E1\u30CB\u30E5\u30FC\u30AB\u30C6\u30B4\u30EA\u30FC"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          children: "\u30E1\u30CB\u30E5\u30FC\u8A73\u7D30"
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          children: "\u30EF\u30FC\u30AF\u4E00\u89A7"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_workAdd__WEBPACK_IMPORTED_MODULE_2__.default, {
+          loginUserId: this.state.loginUser.id,
+          reload: this.reload
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          children: "\u30BF\u30A4\u30DE\u30FC"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          children: "\u30EF\u30FC\u30AF\u8A73\u7D30"
         })]
       });
     }
@@ -2054,6 +2059,243 @@ var Home = /*#__PURE__*/function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
+
+/***/ }),
+
+/***/ "./resources/js/components/workAdd.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/workAdd.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var WorkAdd = /*#__PURE__*/function (_React$Component) {
+  _inherits(WorkAdd, _React$Component);
+
+  var _super = _createSuper(WorkAdd);
+
+  function WorkAdd() {
+    var _this;
+
+    _classCallCheck(this, WorkAdd);
+
+    _this = _super.call(this);
+
+    _defineProperty(_assertThisInitialized(_this), "onChangeName", function (e) {
+      _this.setState({
+        nameData: e.target.value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onChangeInfo", function (e) {
+      _this.setState({
+        informationData: e.target.value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onChangeInterval", function (e) {
+      _this.setState({
+        intervalData: e.target.value
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleClickAdd", function () {
+      var isYes = confirm('この内容で登録しますか？');
+
+      if (isYes === false) {
+        return;
+      }
+
+      var data = {
+        name: _this.state.nameData,
+        information: _this.state.informationData,
+        interval: _this.state.intervalData
+      };
+      fetch("/api/workAdd", {
+        method: 'POST',
+        body: JSON.stringify({
+          user_id: _this.props.loginUserId,
+          name: data.name,
+          information: data.information,
+          interval: data.interval
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(function (response) {
+        return response.text();
+      }).then(function (text) {
+        alert(text);
+      })["catch"](function (e) {
+        console.log(e);
+        alert('入力が正しくありません。');
+      });
+
+      _this.setState({
+        nameData: '',
+        informationData: '',
+        intervalData: '00:00',
+        workAddModalOpen: false
+      });
+
+      _this.props.reload();
+    });
+
+    _this.state = {
+      workAddModalOpen: false,
+      nameData: '',
+      informationData: '',
+      intervalData: '00:00'
+    };
+    return _this;
+  } //フォーム入力
+
+
+  _createClass(WorkAdd, [{
+    key: "workCreate",
+    value: // NewWorkボタン
+    function workCreate() {
+      var _this2 = this;
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("small", {
+          className: "btn btn-light bg-white  btn-sm shadow-sm m-1",
+          onClick: function onClick() {
+            _this2.handleClickOpen();
+          },
+          children: ["NewWork\u3000", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
+            className: "fas fa-plus"
+          })]
+        })
+      });
+    } //作成画面を開く
+
+  }, {
+    key: "handleClickOpen",
+    value: function handleClickOpen() {
+      this.setState({
+        workAddModalOpen: true
+      });
+    } // 作成画面を閉じる
+
+  }, {
+    key: "handleClickClose",
+    value: function handleClickClose() {
+      this.setState({
+        workAddModalOpen: false,
+        nameData: '',
+        informationData: '',
+        intervalData: '00:00'
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var addForm = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "m-4",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "border-bottom text-center pb-2 mb-3",
+          children: "\u65B0\u898F\u30EF\u30FC\u30AF\u4F5C\u6210"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: ["Name", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "text",
+              className: "form-control",
+              value: this.state.nameData,
+              placeholder: "\u30EF\u30FC\u30AF\u540D\u3092\u5165\u529B",
+              onChange: this.onChangeName
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: ["Information", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("textarea", {
+              className: "form-control",
+              value: this.state.informationData,
+              placeholder: "\u30EF\u30FC\u30AF\u306E\u8A73\u7D30\u3092\u5165\u529B",
+              onChange: this.onChangeInfo
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "form-group",
+            children: ["Interval (\u901A\u77E5\u307E\u3067\u306E\u6642\u9593\u3092\u5165\u529B\u4E0B\u3055\u3044)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+              type: "time",
+              className: "form-control",
+              value: this.state.intervalData,
+              onChange: this.onChangeInterval
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "btn btn-info text-white btn-sm shadow-sm m-1 float-left",
+          onClick: function onClick() {
+            _this3.handleClickAdd();
+          },
+          children: "\u767B\u9332"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+          className: "btn btn-light bg-white btn-sm shadow-sm m-1 ",
+          onClick: function onClick() {
+            _this3.handleClickClose();
+          },
+          children: "Cancel"
+        })]
+      });
+
+      var workAddModal;
+
+      if (this.state.workAddModalOpen === true) {
+        workAddModal = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "custom-modal",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "custom-modal-container",
+            children: addForm
+          })
+        });
+      }
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        children: [this.workCreate(), workAddModal]
+      });
+    }
+  }]);
+
+  return WorkAdd;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WorkAdd);
 
 /***/ }),
 
