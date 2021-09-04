@@ -1,10 +1,11 @@
 import React from 'react';
+import WorkShow from './workShow';
 
-class workIndex extends React.Component{
+class WorkIndex extends React.Component{
   constructor(){
       super()
       this.state={
-        workData: [],
+        workId: [],
       }
   }
   // セレクトボックス変更時
@@ -12,7 +13,7 @@ class workIndex extends React.Component{
     console.log(e.target.value);
 
     this.setState({ 
-      workData: e.target.value,
+      workId: e.target.value,
     });
   }
 
@@ -28,9 +29,12 @@ class workIndex extends React.Component{
             )}
           </select>
         </div>
+        <WorkShow 
+          workId={this.state.workId}
+        />
       </div>
     )
     return (<div>{searchForm}</div>);
   }
 }
-export default workIndex;
+export default WorkIndex;

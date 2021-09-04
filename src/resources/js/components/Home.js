@@ -36,14 +36,13 @@ class Home extends React.Component {
     return (
       <div>
         <Timer />
-        <WorkIndex 
-          workIndex={this.state.userWorks}
-        />
         <WorkAdd 
           loginUserId={this.state.loginUser.id}
           reload={this.reload}
         />
-        <div>ワーク詳細</div>
+        <WorkIndex 
+          workIndex={this.state.userWorks}
+        />
       </div>
     );
   }
