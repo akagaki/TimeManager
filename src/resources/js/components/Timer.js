@@ -29,7 +29,24 @@ class Timer extends React.Component {
     });
   }
   reset() {
-    console.log(this.state.time);
+    const isYes = confirm('経過時間を記録します。\nワークを終了しますか？');
+    if(isYes === false){return}
+    fetch("/api/recordAdd",{
+      method: 'POST',
+      body:JSON.stringify({
+        user_id:this.props.workData.user_id,
+            work_id:this.props.workData.id,
+            elapsed_time:this.state.time
+      }),
+      headers:{"Content-Type": "application/json"},
+      }).then(response => {
+        return response.text();
+      }).then((text) => {
+        alert(text);
+      }).catch((e) => {
+        console.log(e);
+        alert('入力が正しくありません。');
+      });
     clearInterval(this.timer);
     this.setState({
       hours: '00',

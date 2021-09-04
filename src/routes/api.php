@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+// 新規ワーク登録
 Route::post('/workAdd', [App\Http\Controllers\ApiController::class, 'workAdd']);
+// 新規レコード登録
+Route::post('/recordAdd', [App\Http\Controllers\ApiController::class, 'recordAdd']);
 

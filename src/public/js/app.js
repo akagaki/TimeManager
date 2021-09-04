@@ -2161,7 +2161,30 @@ var Timer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "reset",
     value: function reset() {
-      console.log(this.state.time);
+      var isYes = confirm('経過時間を記録します。\nワークを終了しますか？');
+
+      if (isYes === false) {
+        return;
+      }
+
+      fetch("/api/recordAdd", {
+        method: 'POST',
+        body: JSON.stringify({
+          user_id: this.props.workData.user_id,
+          work_id: this.props.workData.id,
+          elapsed_time: this.state.time
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(function (response) {
+        return response.text();
+      }).then(function (text) {
+        alert(text);
+      })["catch"](function (e) {
+        console.log(e);
+        alert('入力が正しくありません。');
+      });
       clearInterval(this.timer);
       this.setState({
         hours: '00',
