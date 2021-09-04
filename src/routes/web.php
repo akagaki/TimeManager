@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// ログイン情報取得API
+Route::middleware('auth')->get('api/loginUser', [App\Http\Controllers\ApiController::class, 'loginUser']);
+// ワーク情報取得API
+Route::middleware('auth')->get('api/userWorks', [App\Http\Controllers\ApiController::class, 'userWorks']);
