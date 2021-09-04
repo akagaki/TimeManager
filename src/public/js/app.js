@@ -2547,11 +2547,11 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
 
       _this.props.userWorks.forEach(function (element) {
         if (element.id == workId) {
-          workData = element;
+          _this.setState({
+            workData: element
+          });
         }
       });
-
-      console.log(workData);
     });
 
     _this.state = {
@@ -2579,8 +2579,10 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
               }, index);
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_workShow__WEBPACK_IMPORTED_MODULE_1__.default, {
-          workData: this.workData
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_workShow__WEBPACK_IMPORTED_MODULE_1__.default, {
+            workData: this.state.workData
+          })
         })]
       });
 
@@ -2651,9 +2653,12 @@ var WorkShow = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var workShow = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          className: "border-bottom",
-          children: ["Name\uFF1A", this.props.workData]
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "border-bottom text-center h4 pb-2 pt-3",
+          children: this.props.workData.name
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "text-center p-2",
+          children: this.props.workData.information
         }), "Total\u3000\uFF1A Monthly\uFF1A \u30AB\u30EC\u30F3\u30C0\u30FC"]
       });
 

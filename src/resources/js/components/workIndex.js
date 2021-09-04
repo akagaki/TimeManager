@@ -14,12 +14,12 @@ class WorkIndex extends React.Component{
     const workId = e.target.value;
     this.props.userWorks.forEach(element =>{
       if(element.id == workId){
-        workData =element;
+        this.setState({
+          workData: element,
+        });
       }
     });
-    console.log(workData);
   }
-
   render() {
     const searchForm = (  
       <div>
@@ -32,9 +32,11 @@ class WorkIndex extends React.Component{
             )}
           </select>
         </div>
-        <WorkShow 
-          workData={this.workData}
-        />
+        <div>
+          <WorkShow 
+          workData = {this.state.workData}
+          />
+        </div>
       </div>
     )
     return (<div>{searchForm}</div>);
