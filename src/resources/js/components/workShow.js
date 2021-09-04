@@ -8,7 +8,7 @@ class WorkShow extends React.Component{
     const workShow = (  
       <div>
         <div className="border-bottom" >
-        Name：{this.props.workId}
+        Name：{this.props.workData}
         </div>
         Total　：
         Monthly：

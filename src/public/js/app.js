@@ -2061,7 +2061,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
           loginUserId: this.state.loginUser.id,
           reload: this.reload
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_workIndex__WEBPACK_IMPORTED_MODULE_4__.default, {
-          workIndex: this.state.userWorks
+          userWorks: this.state.userWorks
         })]
       });
     }
@@ -2542,15 +2542,20 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
 
     _defineProperty(_assertThisInitialized(_this), "onChangeData", function (e) {
-      console.log(e.target.value);
+      var workData;
+      var workId = e.target.value;
 
-      _this.setState({
-        workId: e.target.value
+      _this.props.userWorks.forEach(function (element) {
+        if (element.id == workId) {
+          workData = element;
+        }
       });
+
+      console.log(workData);
     });
 
     _this.state = {
-      workId: []
+      workData: ''
     };
     return _this;
   } // セレクトボックス変更時
@@ -2567,7 +2572,7 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
             onChange: this.onChangeData,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
               children: "\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044"
-            }), this.props.workIndex.map(function (obj, index) {
+            }), this.props.userWorks.map(function (obj, index) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
                 value: obj.id,
                 children: obj.name
@@ -2575,7 +2580,7 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
             })]
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_workShow__WEBPACK_IMPORTED_MODULE_1__.default, {
-          workId: this.state.workId
+          workData: this.workData
         })]
       });
 
@@ -2648,7 +2653,7 @@ var WorkShow = /*#__PURE__*/function (_React$Component) {
       var workShow = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "border-bottom",
-          children: ["Name\uFF1A", this.props.workId]
+          children: ["Name\uFF1A", this.props.workData]
         }), "Total\u3000\uFF1A Monthly\uFF1A \u30AB\u30EC\u30F3\u30C0\u30FC"]
       });
 

@@ -41,7 +41,7 @@ class Home extends React.Component {
           reload={this.reload}
         />
         <WorkIndex 
-          workIndex={this.state.userWorks}
+          userWorks={this.state.userWorks}
         />
       </div>
     );

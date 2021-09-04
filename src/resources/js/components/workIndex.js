@@ -5,16 +5,19 @@ class WorkIndex extends React.Component{
   constructor(){
       super()
       this.state={
-        workId: [],
+        workData: '',
       }
   }
   // セレクトボックス変更時
   onChangeData=(e)=>{
-    console.log(e.target.value);
-
-    this.setState({ 
-      workId: e.target.value,
+    let workData;
+    const workId = e.target.value;
+    this.props.userWorks.forEach(element =>{
+      if(element.id == workId){
+        workData =element;
+      }
     });
+    console.log(workData);
   }
 
   render() {
@@ -24,13 +27,13 @@ class WorkIndex extends React.Component{
           MyWork
           <select className="custom-select shadow-sm"onChange={this.onChangeData}>
             <option>選択してください</option>
-            {this.props.workIndex.map((obj,index) =>
+            {this.props.userWorks.map((obj,index) =>
             <option key={index} value={obj.id}>{obj.name}</option>
             )}
           </select>
         </div>
         <WorkShow 
-          workId={this.state.workId}
+          workData={this.workData}
         />
       </div>
     )
