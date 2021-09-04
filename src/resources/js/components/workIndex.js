@@ -1,5 +1,6 @@
 import React from 'react';
 import WorkShow from './workShow';
+import Timer from './Timer';
 
 class WorkIndex extends React.Component{
   constructor(){
@@ -8,6 +9,7 @@ class WorkIndex extends React.Component{
         workData: '',
       }
   }
+  
   // セレクトボックス変更時
   onChangeData=(e)=>{
     let workData;
@@ -20,10 +22,14 @@ class WorkIndex extends React.Component{
       }
     });
   }
+
   render() {
     const searchForm = (  
       <div>
-        <div className="form-group">
+          <Timer
+            workData = {this.state.workData}
+          />
+        <div className="form-group my-2">
           MyWork
           <select className="custom-select shadow-sm"onChange={this.onChangeData}>
             <option>選択してください</option>
@@ -34,7 +40,7 @@ class WorkIndex extends React.Component{
         </div>
         <div>
           <WorkShow 
-          workData = {this.state.workData}
+            workData = {this.state.workData}
           />
         </div>
       </div>

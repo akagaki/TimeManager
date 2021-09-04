@@ -35,7 +35,6 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <Timer />
         <WorkAdd 
           loginUserId={this.state.loginUser.id}
           reload={this.reload}

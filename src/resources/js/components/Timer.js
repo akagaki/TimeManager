@@ -13,10 +13,14 @@ class Timer extends React.Component {
     };
   }
   start() {
-    this.timer = setInterval(() => this.update(), 1000);
-    this.setState({
-      button: this.pauseButton()
-    });
+    if(this.props.workData.id == null){
+      alert('ワークを選択してください');
+    }else{
+      this.timer = setInterval(() => this.update(), 1000);
+      this.setState({
+        button: this.pauseButton()
+      });
+    }
   }
   stop() {
     clearInterval(this.timer);
