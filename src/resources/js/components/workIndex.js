@@ -21,7 +21,7 @@ class workIndex extends React.Component{
       <div>
         <div className="form-group">
           MyWork
-          <select className="custom-select"onChange={this.onChangeData}>
+          <select className="custom-select shadow-sm"onChange={this.onChangeData}>
             <option>選択してください</option>
             {this.props.workIndex.map((obj,index) =>
             <option key={index} value={obj.id}>{obj.name}</option>
