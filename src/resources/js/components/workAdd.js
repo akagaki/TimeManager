@@ -91,7 +91,7 @@ class WorkAdd extends React.Component {
           新規ワーク作成
         </div>
         <form>
-          <div className="form-group">
+          <div>
               Name
               <input type="text" className="form-control" value={this.state.nameData} placeholder="ワーク名を入力"   onChange={this.onChangeName}/>
           </div>

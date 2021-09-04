@@ -1,4 +1,5 @@
 import React from "react"
+import Timer from "./Timer";
 import WorkAdd from "./workAdd";
 import WorkIndex from "./workIndex";
 
@@ -34,7 +35,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>
-        <div>タイマー</div>
+        <Timer />
         <WorkIndex 
           workIndex={this.state.userWorks}
         />
