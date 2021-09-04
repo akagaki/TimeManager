@@ -2159,6 +2159,8 @@ var Timer = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "reset",
     value: function reset() {
+      console.log(this.state.time);
+      clearInterval(this.timer);
       this.setState({
         hours: '00',
         minutes: '00',
@@ -2192,7 +2194,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
       var _this3 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "btn  btn-danger px-3 py-2 mx-2 rounded",
+        className: "btn  btn-danger px-3 py-2 mx-2 rounded shadow-sm",
         onClick: function onClick() {
           _this3.start();
         },
@@ -2207,7 +2209,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
       var _this4 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: "btn  btn-danger px-3 py-2  mx-2 rounded",
+        className: "btn  btn-danger px-3 py-2  mx-2 rounded shadow-sm",
         onClick: function onClick() {
           _this4.stop();
         },
@@ -2224,13 +2226,13 @@ var Timer = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         children: ["Timer", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-            className: "bg-dark text-white h1 p-2 text-center",
+            className: "bg-dark text-white h1 p-2 text-center shadow-sm",
             children: [this.state.hours, ":", this.state.minutes, ":", this.state.seconds]
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "text-center",
           children: [this.state.button, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-            className: "btn  btn-dark px-3 py-2 mx-2 rounded",
+            className: "btn  btn-dark px-3 py-2 mx-2 rounded shadow-sm",
             onClick: function onClick() {
               _this5.reset();
             },
@@ -2561,7 +2563,7 @@ var workIndex = /*#__PURE__*/function (_React$Component) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "form-group",
           children: ["MyWork", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-            className: "custom-select",
+            className: "custom-select shadow-sm",
             onChange: this.onChangeData,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
               children: "\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044"

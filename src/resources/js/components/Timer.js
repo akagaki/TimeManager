@@ -25,6 +25,8 @@ class Timer extends React.Component {
     });
   }
   reset() {
+    console.log(this.state.time);
+    clearInterval(this.timer);
     this.setState({
       hours: '00',
       minutes: '00',
@@ -50,14 +52,14 @@ class Timer extends React.Component {
   }
   startButton() {
     return(
-        <div className="btn  btn-danger px-3 py-2 mx-2 rounded" onClick={() => {this.start()}}>
+        <div className="btn  btn-danger px-3 py-2 mx-2 rounded shadow-sm" onClick={() => {this.start()}}>
           <i className="fas fa-play"></i>
         </div>
     )
   }
   pauseButton(){
     return(
-        <div className="btn  btn-danger px-3 py-2  mx-2 rounded" onClick={() => {this.stop()}}>
+        <div className="btn  btn-danger px-3 py-2  mx-2 rounded shadow-sm" onClick={() => {this.stop()}}>
           <i className="fas fa-pause"></i>
         </div>
     )
@@ -67,11 +69,11 @@ class Timer extends React.Component {
       <div>
         Timer
         <div>
-          <div className="bg-dark text-white h1 p-2 text-center">{this.state.hours}:{this.state.minutes}:{this.state.seconds}</div>
+          <div className="bg-dark text-white h1 p-2 text-center shadow-sm">{this.state.hours}:{this.state.minutes}:{this.state.seconds}</div>
         </div>
         <div className="text-center">
           {this.state.button}
-          <div className="btn  btn-dark px-3 py-2 mx-2 rounded" onClick={() => {this.reset()}}>
+          <div className="btn  btn-dark px-3 py-2 mx-2 rounded shadow-sm" onClick={() => {this.reset()}}>
             <i className="fas fa-stop"></i>
           </div>
         </div>    
