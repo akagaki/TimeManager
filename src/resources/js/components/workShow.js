@@ -1,4 +1,5 @@
 import React from 'react';
+import CalendarItem from './calendarItem';
 
 class WorkShow extends React.Component{
   render() {
@@ -13,9 +14,7 @@ class WorkShow extends React.Component{
           <div className="h4 m-2">
             TotalTime：{this.props.totalTime}
           </div>
-          <div className="h4 m-2">
-            カレンダー
-          </div>
+            <CalendarItem/>
       </div>
     )
     return (<div>{workShow}</div>);
