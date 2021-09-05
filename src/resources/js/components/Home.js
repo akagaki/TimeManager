@@ -1,5 +1,4 @@
 import React from "react"
-import Timer from "./Timer";
 import WorkAdd from "./workAdd";
 import WorkIndex from "./workIndex";
 
@@ -41,6 +40,7 @@ class Home extends React.Component {
         />
         <WorkIndex 
           userWorks={this.state.userWorks}
+          // reload={this.reload}
         />
       </div>
     );

@@ -9,21 +9,22 @@ class WorkIndex extends React.Component{
         workData: '',
         totalTime: '',
       }
+      this.reload=this.reload.bind(this);
   }
+  // トータル時間情報を取得
+  getTotalTime (workId){
+    fetch("http://0.0.0.0:8000/api/totalTime",{
+      method: 'POST',
+      body:JSON.stringify({id:workId}),
+      headers:{"Content-Type": "application/json"}
+    })
+    .then((res) => res.text())
+    .then(text =>{this.setState({totalTime:text})});
+  };
   // セレクトボックス変更時
   onChangeData=(e)=>{
     const workId = e.target.value;
-    // トータル時間情報を取得
-    const load=()=>{
-      fetch("http://0.0.0.0:8000/api/totalTime",{
-        method: 'POST',
-        body:JSON.stringify({id:workId}),
-        headers:{"Content-Type": "application/json"}
-      })
-      .then((res) => res.text())
-      .then(text =>{this.setState({totalTime:text})});
-    }
-    load();
+    this.getTotalTime(workId);
     this.props.userWorks.forEach(element =>{
       if(element.id == workId){
         this.setState({
@@ -32,12 +33,16 @@ class WorkIndex extends React.Component{
       }
     });
   }
+  reload(workId){
+      this.getTotalTime(workId);
+  }
 
   render() {
     const searchForm = (  
       <div>
           <Timer
             workData = {this.state.workData}
+            reload = {this.reload}
           />
         <div className="form-group my-2">
           MyWork

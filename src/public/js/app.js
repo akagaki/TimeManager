@@ -1936,10 +1936,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _Timer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Timer */ "./resources/js/components/Timer.js");
-/* harmony import */ var _workAdd__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./workAdd */ "./resources/js/components/workAdd.js");
-/* harmony import */ var _workIndex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./workIndex */ "./resources/js/components/workIndex.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _workAdd__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./workAdd */ "./resources/js/components/workAdd.js");
+/* harmony import */ var _workIndex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./workIndex */ "./resources/js/components/workIndex.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -1967,7 +1966,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 
 
 
@@ -2056,12 +2054,13 @@ var Home = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_workAdd__WEBPACK_IMPORTED_MODULE_3__.default, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_workAdd__WEBPACK_IMPORTED_MODULE_2__.default, {
           loginUserId: this.state.loginUser.id,
           reload: this.reload
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_workIndex__WEBPACK_IMPORTED_MODULE_4__.default, {
-          userWorks: this.state.userWorks
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_workIndex__WEBPACK_IMPORTED_MODULE_3__.default, {
+          userWorks: this.state.userWorks // reload={this.reload}
+
         })]
       });
     }
@@ -2193,6 +2192,7 @@ var Timer = /*#__PURE__*/function (_React$Component) {
         time: 0,
         button: this.startButton()
       });
+      this.props.reload(this.props.workData.id);
     }
   }, {
     key: "update",
@@ -2571,27 +2571,9 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
 
     _defineProperty(_assertThisInitialized(_this), "onChangeData", function (e) {
-      var workId = e.target.value; // トータル時間情報を取得
+      var workId = e.target.value;
 
-      var load = function load() {
-        fetch("http://0.0.0.0:8000/api/totalTime", {
-          method: 'POST',
-          body: JSON.stringify({
-            id: workId
-          }),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }).then(function (res) {
-          return res.text();
-        }).then(function (text) {
-          _this.setState({
-            totalTime: text
-          });
-        });
-      };
-
-      load();
+      _this.getTotalTime(workId);
 
       _this.props.userWorks.forEach(function (element) {
         if (element.id == workId) {
@@ -2606,16 +2588,44 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
       workData: '',
       totalTime: ''
     };
+    _this.reload = _this.reload.bind(_assertThisInitialized(_this));
     return _this;
-  } // セレクトボックス変更時
+  } // トータル時間情報を取得
 
 
   _createClass(WorkIndex, [{
+    key: "getTotalTime",
+    value: function getTotalTime(workId) {
+      var _this2 = this;
+
+      fetch("http://0.0.0.0:8000/api/totalTime", {
+        method: 'POST',
+        body: JSON.stringify({
+          id: workId
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(function (res) {
+        return res.text();
+      }).then(function (text) {
+        _this2.setState({
+          totalTime: text
+        });
+      });
+    }
+  }, {
+    key: "reload",
+    value: function reload(workId) {
+      this.getTotalTime(workId);
+    }
+  }, {
     key: "render",
     value: function render() {
       var searchForm = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Timer__WEBPACK_IMPORTED_MODULE_2__.default, {
-          workData: this.state.workData
+          workData: this.state.workData,
+          reload: this.reload
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "form-group my-2",
           children: ["MyWork", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {

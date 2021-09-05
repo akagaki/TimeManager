@@ -55,6 +55,7 @@ class Timer extends React.Component {
       time: 0,
       button: this.startButton()
     });
+    this.props.reload(this.props.workData.id)
   }
   update() {
     const time = this.state.time + 1;
