@@ -56,7 +56,7 @@
     <link href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body id="app" class="h-100 bg-white">
     <nav class="navbar navbar-expand-md navbar-light bg-light shadow fixed-top">
