@@ -33,6 +33,12 @@
         align-items: center;
         justify-content: center;
     }
+    .react-calendar {
+    width: 100%;
+    max-width: 100%;
+    background: white;
+    line-height: 1.125em;
+    }
     </style> 
 
     <meta charset="utf-8">
