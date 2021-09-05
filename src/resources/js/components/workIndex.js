@@ -16,7 +16,7 @@ class WorkIndex extends React.Component{
   }
   // トータル時間情報を取得
   getTotalTime (workId){
-    fetch("http://0.0.0.0:8000/api/totalTime",{
+    fetch("/api/totalTime",{
       method: 'POST',
       body:JSON.stringify({id:workId}),
       headers:{"Content-Type": "application/json"}
@@ -26,7 +26,7 @@ class WorkIndex extends React.Component{
   };
   // 月間時間情報を取得
   getMonthlyTime (workId){
-    fetch("http://0.0.0.0:8000/api/monthlyTime",{
+    fetch("/api/monthlyTime",{
       method: 'POST',
       body:JSON.stringify({id:workId}),
       headers:{"Content-Type": "application/json"}

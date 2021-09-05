@@ -23,7 +23,7 @@ import 'react-calendar/dist/Calendar.css';
               var clickDay=( year + '-' + month + '-' + day );
               // 1日の時間情報を取得
               console.log(clickDay);
-              fetch("http://0.0.0.0:8000/api/dayTimes",{
+              fetch("/api/dayTimes",{
                 method: 'POST',
                 body:JSON.stringify({
                     id:this.props.workData.id,
