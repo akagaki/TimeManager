@@ -26,3 +26,5 @@ Route::post('/totalTime', [App\Http\Controllers\ApiController::class, 'totalTime
 // 月間時間取得
 Route::post('/monthlyTime', [App\Http\Controllers\ApiController::class, 'monthlyTime']);
 
+Route::post('/dayTimes', [App\Http\Controllers\ApiController::class, 'dayTimes']);
+

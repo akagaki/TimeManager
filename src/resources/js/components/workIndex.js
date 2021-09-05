@@ -1,6 +1,8 @@
 import React from 'react';
 import WorkShow from './workShow';
 import Timer from './Timer';
+import CalendarItem from './calendarItem';
+
 
 class WorkIndex extends React.Component{
   constructor(){
@@ -32,6 +34,7 @@ class WorkIndex extends React.Component{
     .then((res) => res.text())
     .then(text =>{this.setState({monthlyTime:text})});
   };
+  
   // セレクトボックス変更時
   onChangeData=(e)=>{
     const workId = e.target.value;
@@ -71,7 +74,11 @@ class WorkIndex extends React.Component{
             workData = {this.state.workData}
             totalTime = {this.state.totalTime}
             monthlyTime = {this.state.monthlyTime}
+            dayTimes = {this.state.dayTimes}
           />
+          <CalendarItem 
+              workData = {this.state.workData}
+            />
         </div>
       </div>
     )

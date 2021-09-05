@@ -44,16 +44,40 @@ class ApiController extends Controller
         $recordData = Work::find($data['id'])->records;
         $total_second = 0;
         $now = date('Y-m');
+        foreach($recordData as $record ){
+                $create = $record->created_at;
+                $month =date('Y-m', strtotime($create));
+                if($month == $now ){
+                    $time =explode(':', $record-> elapsed_time);
+                    $total_second += $time[0] * 60 * 60 + $time[1] * 60  + $time[2];
+                }
+        }
+        $total_time = floor($total_second / 3600) . gmdate(":i:s", $total_second);
+        return $total_time;
+    }
+    // 1日の時間を取得
+    public function dayTimes(Request $request)
+    {   
+        $data = json_decode(file_get_contents("php://input"), true);
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'created_at' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response("ワークを選択して下さい");
+        }else{
+            $recordData = Work::find($data['id'])->records;
+            $total_second = 0;
             foreach($recordData as $record ){
-                    $create = $record->created_at;
-                    $month =date('Y-m', strtotime($create));
-                    if($month == $now ){
-                        $time =explode(':', $record-> elapsed_time);
-                        $total_second += $time[0] * 60 * 60 + $time[1] * 60  + $time[2];
-                    }
+                $create =date('Y-m-d', strtotime($record->created_at));
+                if($create == $data['created_at']){
+                    $time =explode(':', $record-> elapsed_time);
+                    $total_second += $time[0] * 60 * 60 + $time[1] * 60  + $time[2];
+                }
             }
             $total_time = floor($total_second / 3600) . gmdate(":i:s", $total_second);
-            return $total_time;
+            return "Time：".$total_time;
+        }
     }
 
     // 新規ワーク登録

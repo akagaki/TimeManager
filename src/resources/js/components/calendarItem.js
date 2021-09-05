@@ -2,54 +2,43 @@ import React from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-class CalendarItem extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-        date: new Date(),
-        month_days: {
-          20210905: { text: 'test' },
-          20210902: { text: '00:23:21' }
-        }
-    };
-    this.getTileContent = this.getTileContent.bind(this);
-  };
-  getFormatDate(date) {
-    return `${date.getFullYear()}${('0' + (date.getMonth() + 1)).slice(-2)}${('0' + date.getDate()).slice(-2)}`;
-  }
-  //日付の内容を出力
-  getTileContent({ date, view }) {
-    // 月表示のときのみ
-    if (view !== 'month') {
-      return null;
-    }
-    const day = this.getFormatDate(date);
-    return (
-      <p>
-        <br />
-        {(this.state.month_days[day] && this.state.month_days[day].text) ?
-          this.state.month_days[day].text : ' '
-        }
-      </p>
-    );
-  }
 
-
+  class CalendarItem extends React.Component{
   render() {
-    return (
-      <div className="my-4">
-        Calendar
-        <div className="mt-1 p-2">
-          <Calendar 
-            locale="ja-JP"
-            calendarType="US"
-            value={this.state.date}
-            tileContent={this.getTileContent}
+  return (
+    <div className="my-4">
+      Calendar
+      <div>
+        <div>
+          <Calendar
+            locale={"ja-JP"}
+            value={new Date()}
+            calendarType={"US"}
+            prev2Label={null}
+            next2Label={null}
+            onClickDay={(value) => {
+              var year = value.getFullYear();
+              var month = ("0" + (value.getMonth()+1)).slice(-2);
+              var day = ("0" + value.getDate()).slice(-2);
+              var clickDay=( year + '-' + month + '-' + day );
+              // 1日の時間情報を取得
+              console.log(clickDay);
+              fetch("http://0.0.0.0:8000/api/dayTimes",{
+                method: 'POST',
+                body:JSON.stringify({
+                    id:this.props.workData.id,
+                    created_at:clickDay
+                  }),
+                headers:{"Content-Type": "application/json"}
+              })
+              .then((res) => res.text())
+              .then(text =>alert(text));
+            }}
           />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+ }
 }
-
 export default CalendarItem;

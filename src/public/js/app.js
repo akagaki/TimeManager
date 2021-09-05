@@ -2741,60 +2741,49 @@ var CalendarItem = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(CalendarItem);
 
   function CalendarItem() {
-    var _this;
-
     _classCallCheck(this, CalendarItem);
 
-    _this = _super.call(this);
-    _this.state = {
-      date: new Date(),
-      month_days: {
-        20210905: {
-          text: 'test'
-        },
-        20210902: {
-          text: '00:23:21'
-        }
-      }
-    };
-    _this.getTileContent = _this.getTileContent.bind(_assertThisInitialized(_this));
-    return _this;
+    return _super.apply(this, arguments);
   }
 
   _createClass(CalendarItem, [{
-    key: "getFormatDate",
-    value: function getFormatDate(date) {
-      return "".concat(date.getFullYear()).concat(('0' + (date.getMonth() + 1)).slice(-2)).concat(('0' + date.getDate()).slice(-2));
-    } //日付の内容を出力
-
-  }, {
-    key: "getTileContent",
-    value: function getTileContent(_ref) {
-      var date = _ref.date,
-          view = _ref.view;
-
-      // 月表示のときのみ
-      if (view !== 'month') {
-        return null;
-      }
-
-      var day = this.getFormatDate(date);
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), this.state.month_days[day] && this.state.month_days[day].text ? this.state.month_days[day].text : ' ']
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "my-4",
         children: ["Calendar", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-          className: "mt-1 p-2",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_calendar__WEBPACK_IMPORTED_MODULE_3__.default, {
-            locale: "ja-JP",
-            calendarType: "US",
-            value: this.state.date,
-            tileContent: this.getTileContent
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_calendar__WEBPACK_IMPORTED_MODULE_3__.default, {
+              locale: "ja-JP",
+              value: new Date(),
+              calendarType: "US",
+              prev2Label: null,
+              next2Label: null,
+              onClickDay: function onClickDay(value) {
+                var year = value.getFullYear();
+                var month = ("0" + (value.getMonth() + 1)).slice(-2);
+                var day = ("0" + value.getDate()).slice(-2);
+                var clickDay = year + '-' + month + '-' + day; // 1日の時間情報を取得
+
+                console.log(clickDay);
+                fetch("http://0.0.0.0:8000/api/dayTimes", {
+                  method: 'POST',
+                  body: JSON.stringify({
+                    id: _this.props.workData.id,
+                    created_at: clickDay
+                  }),
+                  headers: {
+                    "Content-Type": "application/json"
+                  }
+                }).then(function (res) {
+                  return res.text();
+                }).then(function (text) {
+                  return alert(text);
+                });
+              }
+            })
           })
         })]
       });
@@ -3058,7 +3047,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _workShow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./workShow */ "./resources/js/components/workShow.js");
 /* harmony import */ var _Timer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Timer */ "./resources/js/components/Timer.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _calendarItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./calendarItem */ "./resources/js/components/calendarItem.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3082,6 +3072,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -3179,34 +3170,37 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var searchForm = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Timer__WEBPACK_IMPORTED_MODULE_2__.default, {
+      var searchForm = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Timer__WEBPACK_IMPORTED_MODULE_2__.default, {
           workData: this.state.workData,
           reload: this.reload
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "form-group my-2",
-          children: ["MyWork", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("select", {
+          children: ["MyWork", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
             className: "custom-select shadow-sm",
             onChange: this.onChangeData,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
               children: "\u9078\u629E\u3057\u3066\u304F\u3060\u3055\u3044"
             }), this.props.userWorks.map(function (obj, index) {
-              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("option", {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
                 value: obj.id,
                 children: obj.name
               }, index);
             })]
           })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_workShow__WEBPACK_IMPORTED_MODULE_1__.default, {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_workShow__WEBPACK_IMPORTED_MODULE_1__.default, {
             workData: this.state.workData,
             totalTime: this.state.totalTime,
-            monthlyTime: this.state.monthlyTime
-          })
+            monthlyTime: this.state.monthlyTime,
+            dayTimes: this.state.dayTimes
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_calendarItem__WEBPACK_IMPORTED_MODULE_3__.default, {
+            workData: this.state.workData
+          })]
         })]
       });
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         children: searchForm
       });
     }
@@ -3231,8 +3225,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _calendarItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendarItem */ "./resources/js/components/calendarItem.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3259,7 +3252,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var WorkShow = /*#__PURE__*/function (_React$Component) {
   _inherits(WorkShow, _React$Component);
 
@@ -3274,23 +3266,23 @@ var WorkShow = /*#__PURE__*/function (_React$Component) {
   _createClass(WorkShow, [{
     key: "render",
     value: function render() {
-      var workShow = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      var workShow = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: "border-bottom text-center h4 pb-2 pt-3",
           children: this.props.workData.name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: "text-center p-2",
           children: this.props.workData.information
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "h4 m-2",
-          children: ["\u5408\u8A08\uFF1A", this.props.totalTime]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          children: ["Total\uFF1A", this.props.totalTime]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "h4 m-2",
-          children: ["\u6708\u9593\uFF1A", this.props.monthlyTime]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_calendarItem__WEBPACK_IMPORTED_MODULE_1__.default, {})]
+          children: ["Month\uFF1A", this.props.monthlyTime]
+        })]
       });
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
         children: workShow
       });
     }
