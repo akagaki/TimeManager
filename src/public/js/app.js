@@ -3094,6 +3094,10 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
 
     _defineProperty(_assertThisInitialized(_this), "onChangeData", function (e) {
+      if (e.target.value == '選択してください') {
+        return;
+      }
+
       var workId = e.target.value;
 
       _this.getTotalTime(workId);

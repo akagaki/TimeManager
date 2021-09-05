@@ -37,6 +37,7 @@ class WorkIndex extends React.Component{
   
   // セレクトボックス変更時
   onChangeData=(e)=>{
+    if(e.target.value == '選択してください'){return}
     const workId = e.target.value;
     this.getTotalTime(workId);
     this.getMonthlyTime(workId);
