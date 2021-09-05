@@ -9,7 +9,7 @@ import 'react-calendar/dist/Calendar.css';
     <div className="my-4">
       Calendar
       <div>
-        <div>
+        <div className="border border-white w-100">
           <Calendar
             locale={"ja-JP"}
             value={new Date()}
