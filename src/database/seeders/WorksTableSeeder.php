@@ -14,25 +14,23 @@ class WorksTableSeeder extends Seeder
      */
     public function run()
     {
-        // 初期化
-        DB::table('works')->delete();
-  
+        
         # テストデータ挿入
-        DB::table('works')->insert([
+            $param =
             [
                 'user_id'    => 1,
                 'name'    => 'ウォーキング',
                 'information'    => '健康のため毎朝１時間ウォーキング',
                 'interval' => '00:30:00',
-            ]
-        ]);
-        DB::table('works')->insert([
+            ];
+            DB::table('works')->insert($param);
+            $param =
             [
                 'user_id'    => 1,
                 'name'    => 'プログラミング学習',
                 'information'    => '基礎文法の習得',
                 'interval' => '01:00:00',
-            ]
-        ]);
+            ];
+            DB::table('works')->insert($param);
     }
 }
