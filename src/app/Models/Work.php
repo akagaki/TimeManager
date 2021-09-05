@@ -9,4 +9,9 @@ class Work extends Model
 {
     use HasFactory;
     protected $guarded = array('id');
+
+    public function records()
+    {
+        return $this->hasMany('App\Models\Record');
+    }
 }
