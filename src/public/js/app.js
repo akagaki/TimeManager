@@ -2722,10 +2722,10 @@ var WorkShow = /*#__PURE__*/function (_React$Component) {
           className: "text-center p-2",
           children: this.props.workData.information
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-          children: ["Total\u3000\uFF1A", this.props.totalTime]
+          className: "h4 m-2",
+          children: ["TotalTime\uFF1A", this.props.totalTime]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          children: "Monthly\uFF1A"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "h4 m-2",
           children: "\u30AB\u30EC\u30F3\u30C0\u30FC"
         })]
       });

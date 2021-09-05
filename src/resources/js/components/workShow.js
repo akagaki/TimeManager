@@ -10,13 +10,10 @@ class WorkShow extends React.Component{
         <div className="text-center p-2">
           {this.props.workData.information}
         </div>
-          <div>
-            Total　：{this.props.totalTime}
+          <div className="h4 m-2">
+            TotalTime：{this.props.totalTime}
           </div>
-          <div>
-            Monthly：
-          </div>
-          <div>
+          <div className="h4 m-2">
             カレンダー
           </div>
       </div>
