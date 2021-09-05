@@ -14,54 +14,51 @@ class RecordsTableSeeder extends Seeder
      */
     public function run()
     {
-        // 初期化
-        DB::table('records')->delete();
-  
-        # テストデータ挿入
-        DB::table('records')->insert([
+        
+           $param = 
             [
                 'user_id'    => 1,
                 'work_id' => 1,
                 'elapsed_time' => '01:10:10',
                 'created_at' => '2021-08-01 08:00:00',
                 'updated_at' => '2021-08-01 08:00:00',
-            ]
-        ]);
-        DB::table('records')->insert([
+            ];
+            DB::table('records')->insert($param);
+            $param = 
             [
                 'user_id'    => 1,
                 'work_id' => 1,
                 'elapsed_time' => '01:10:20',
                 'created_at' => '2021-08-02 08:00:00',
                 'updated_at' => '2021-08-02 08:00:00',
-            ]
-        ]);
-        DB::table('records')->insert([
+            ];
+            DB::table('records')->insert($param);
+            $param =
             [
                 'user_id'    => 1,
                 'work_id' => 1,
                 'elapsed_time' => '01:33:32',
                 'created_at' => '2021-09-01 08:00:00',
                 'updated_at' => '2021-09-01 08:00:00',
-            ]
-        ]);
-        DB::table('records')->insert([
+            ];
+            DB::table('records')->insert($param);
+            $param =
             [
                 'user_id'    => 1,
                 'work_id' => 1,
                 'elapsed_time' => '01:00:31',
                 'created_at' => '2021-09-02 08:00:00',
                 'updated_at' => '2021-09-02 08:00:00',
-            ]
-        ]);
-        DB::table('records')->insert([
+            ];
+            DB::table('records')->insert($param);
+            $param =
             [
                 'user_id'    => 1,
                 'work_id' => 1,
                 'elapsed_time' => '01:10:10',
                 'created_at' => '2021-09-03 08:00:00',
                 'updated_at' => '2021-09-03 08:00:00',
-            ]
-        ]);
+            ];
+            DB::table('records')->insert($param);
     }
 }
