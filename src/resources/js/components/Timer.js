@@ -34,9 +34,9 @@ class Timer extends React.Component {
     fetch("/api/recordAdd",{
       method: 'POST',
       body:JSON.stringify({
-        user_id:this.props.workData.user_id,
-            work_id:this.props.workData.id,
-            elapsed_time:this.state.time
+          user_id:this.props.workData.user_id,
+          work_id:this.props.workData.id,
+          elapsed_time:this.state.time
       }),
       headers:{"Content-Type": "application/json"},
       }).then(response => {

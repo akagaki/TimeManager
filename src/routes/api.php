@@ -21,4 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/workAdd', [App\Http\Controllers\ApiController::class, 'workAdd']);
 // 新規レコード登録
 Route::post('/recordAdd', [App\Http\Controllers\ApiController::class, 'recordAdd']);
+// トータル時間取得
+Route::post('/totalTime', [App\Http\Controllers\ApiController::class, 'totalTime']);
 

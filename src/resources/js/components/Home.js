@@ -16,10 +16,10 @@ class Home extends React.Component {
   componentDidMount(){
       const load= async () =>{
       // ログインユーザー情報
-      const userdata = await fetch("/api/loginUser");
+      const userdata = await fetch("http://0.0.0.0:8000/api/loginUser");
       const user = await userdata.json();    
       // ユーザーワーク一覧
-      const workData = await fetch("/api/userWorks");
+      const workData = await fetch("http://0.0.0.0:8000/api/userWorks");
       const works = await workData.json();
         this.setState({
           loginUser: user,

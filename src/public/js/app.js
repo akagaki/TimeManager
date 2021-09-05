@@ -2008,7 +2008,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
               switch (_context.prev = _context.next) {
                 case 0:
                   _context.next = 2;
-                  return fetch("/api/loginUser");
+                  return fetch("http://0.0.0.0:8000/api/loginUser");
 
                 case 2:
                   userdata = _context.sent;
@@ -2018,7 +2018,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
                 case 5:
                   user = _context.sent;
                   _context.next = 8;
-                  return fetch("/api/userWorks");
+                  return fetch("http://0.0.0.0:8000/api/userWorks");
 
                 case 8:
                   workData = _context.sent;
@@ -2571,8 +2571,27 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
 
     _defineProperty(_assertThisInitialized(_this), "onChangeData", function (e) {
-      var workData;
-      var workId = e.target.value;
+      var workId = e.target.value; // トータル時間情報を取得
+
+      var load = function load() {
+        fetch("http://0.0.0.0:8000/api/totalTime", {
+          method: 'POST',
+          body: JSON.stringify({
+            id: workId
+          }),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }).then(function (res) {
+          return res.text();
+        }).then(function (text) {
+          _this.setState({
+            totalTime: text
+          });
+        });
+      };
+
+      load();
 
       _this.props.userWorks.forEach(function (element) {
         if (element.id == workId) {
@@ -2584,7 +2603,8 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
     });
 
     _this.state = {
-      workData: ''
+      workData: '',
+      totalTime: ''
     };
     return _this;
   } // セレクトボックス変更時
@@ -2612,7 +2632,8 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_workShow__WEBPACK_IMPORTED_MODULE_1__.default, {
-            workData: this.state.workData
+            workData: this.state.workData,
+            totalTime: this.state.totalTime
           })
         })]
       });
@@ -2690,7 +2711,13 @@ var WorkShow = /*#__PURE__*/function (_React$Component) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: "text-center p-2",
           children: this.props.workData.information
-        }), "Total\u3000\uFF1A Monthly\uFF1A \u30AB\u30EC\u30F3\u30C0\u30FC"]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          children: ["Total\u3000\uFF1A", this.props.totalTime]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          children: "Monthly\uFF1A"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          children: "\u30AB\u30EC\u30F3\u30C0\u30FC"
+        })]
       });
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {

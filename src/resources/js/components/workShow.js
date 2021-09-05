@@ -1,9 +1,6 @@
 import React from 'react';
 
 class WorkShow extends React.Component{
-
-
-
   render() {
     const workShow = (  
       <div>
@@ -13,9 +10,15 @@ class WorkShow extends React.Component{
         <div className="text-center p-2">
           {this.props.workData.information}
         </div>
-          Total　：
-          Monthly：
-          カレンダー
+          <div>
+            Total　：{this.props.totalTime}
+          </div>
+          <div>
+            Monthly：
+          </div>
+          <div>
+            カレンダー
+          </div>
       </div>
     )
     return (<div>{workShow}</div>);

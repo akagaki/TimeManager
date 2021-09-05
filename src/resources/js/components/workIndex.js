@@ -7,13 +7,23 @@ class WorkIndex extends React.Component{
       super()
       this.state={
         workData: '',
+        totalTime: '',
       }
   }
-  
   // セレクトボックス変更時
   onChangeData=(e)=>{
-    let workData;
     const workId = e.target.value;
+    // トータル時間情報を取得
+    const load=()=>{
+      fetch("http://0.0.0.0:8000/api/totalTime",{
+        method: 'POST',
+        body:JSON.stringify({id:workId}),
+        headers:{"Content-Type": "application/json"}
+      })
+      .then((res) => res.text())
+      .then(text =>{this.setState({totalTime:text})});
+    }
+    load();
     this.props.userWorks.forEach(element =>{
       if(element.id == workId){
         this.setState({
@@ -41,6 +51,7 @@ class WorkIndex extends React.Component{
         <div>
           <WorkShow 
             workData = {this.state.workData}
+            totalTime = {this.state.totalTime}
           />
         </div>
       </div>

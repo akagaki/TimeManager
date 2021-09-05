@@ -24,6 +24,19 @@ class ApiController extends Controller
         $userWorks = Auth::user()->works->sortByDesc('id')->values();
         return $userWorks;
     }
+    // トータル時間を取得
+    public function totalTime()
+    {   
+        $data = json_decode(file_get_contents("php://input"), true);
+        $recordData = Work::find($data['id'])->records;
+        $total_second = 0;
+        foreach($recordData as $record ){
+                $time =explode(':', $record-> elapsed_time);
+                $total_second += $time[0] * 60 * 60 + $time[1] * 60  + $time[2];
+        }
+        $total_time = floor($total_second / 3600) . gmdate(":i:s", $total_second);
+        return $total_time;
+    }
 
     // 新規ワーク登録
     public function workAdd(Request $request)
