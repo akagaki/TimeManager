@@ -8,6 +8,7 @@ class WorkIndex extends React.Component{
       this.state={
         workData: '',
         totalTime: '',
+        monthlyTime: '',
       }
       this.reload=this.reload.bind(this);
   }
@@ -21,10 +22,21 @@ class WorkIndex extends React.Component{
     .then((res) => res.text())
     .then(text =>{this.setState({totalTime:text})});
   };
+  // 月間時間情報を取得
+  getMonthlyTime (workId){
+    fetch("http://0.0.0.0:8000/api/monthlyTime",{
+      method: 'POST',
+      body:JSON.stringify({id:workId}),
+      headers:{"Content-Type": "application/json"}
+    })
+    .then((res) => res.text())
+    .then(text =>{this.setState({monthlyTime:text})});
+  };
   // セレクトボックス変更時
   onChangeData=(e)=>{
     const workId = e.target.value;
     this.getTotalTime(workId);
+    this.getMonthlyTime(workId);
     this.props.userWorks.forEach(element =>{
       if(element.id == workId){
         this.setState({
@@ -35,6 +47,7 @@ class WorkIndex extends React.Component{
   }
   reload(workId){
       this.getTotalTime(workId);
+      this.getMonthlyTime(workId);
   }
 
   render() {
@@ -57,6 +70,7 @@ class WorkIndex extends React.Component{
           <WorkShow 
             workData = {this.state.workData}
             totalTime = {this.state.totalTime}
+            monthlyTime = {this.state.monthlyTime}
           />
         </div>
       </div>

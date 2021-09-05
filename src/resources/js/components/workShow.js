@@ -12,9 +12,14 @@ class WorkShow extends React.Component{
           {this.props.workData.information}
         </div>
           <div className="h4 m-2">
-            TotalTime：{this.props.totalTime}
+            合計：{this.props.totalTime}
           </div>
-            <CalendarItem/>
+          <div className="h4 m-2">
+            月間：{this.props.monthlyTime}
+          </div>
+            <CalendarItem 
+            
+            />
       </div>
     )
     return (<div>{workShow}</div>);

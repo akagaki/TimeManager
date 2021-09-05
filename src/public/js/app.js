@@ -2747,19 +2747,55 @@ var CalendarItem = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this);
     _this.state = {
-      date: new Date()
+      date: new Date(),
+      month_days: {
+        20210905: {
+          text: 'test'
+        },
+        20210902: {
+          text: '00:23:21'
+        }
+      }
     };
+    _this.getTileContent = _this.getTileContent.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(CalendarItem, [{
+    key: "getFormatDate",
+    value: function getFormatDate(date) {
+      return "".concat(date.getFullYear()).concat(('0' + (date.getMonth() + 1)).slice(-2)).concat(('0' + date.getDate()).slice(-2));
+    } //日付の内容を出力
+
+  }, {
+    key: "getTileContent",
+    value: function getTileContent(_ref) {
+      var date = _ref.date,
+          view = _ref.view;
+
+      // 月表示のときのみ
+      if (view !== 'month') {
+        return null;
+      }
+
+      var day = this.getFormatDate(date);
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("br", {}), this.state.month_days[day] && this.state.month_days[day].text ? this.state.month_days[day].text : ' ']
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         className: "my-4",
-        children: ["Calendar", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_calendar__WEBPACK_IMPORTED_MODULE_3__.default, {
-          locale: "ja-JP",
-          value: this.state.date
+        children: ["Calendar", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+          className: "mt-1 p-2",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_calendar__WEBPACK_IMPORTED_MODULE_3__.default, {
+            locale: "ja-JP",
+            calendarType: "US",
+            value: this.state.date,
+            tileContent: this.getTileContent
+          })
         })]
       });
     }
@@ -3070,6 +3106,8 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
 
       _this.getTotalTime(workId);
 
+      _this.getMonthlyTime(workId);
+
       _this.props.userWorks.forEach(function (element) {
         if (element.id == workId) {
           _this.setState({
@@ -3081,7 +3119,8 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
 
     _this.state = {
       workData: '',
-      totalTime: ''
+      totalTime: '',
+      monthlyTime: ''
     };
     _this.reload = _this.reload.bind(_assertThisInitialized(_this));
     return _this;
@@ -3110,9 +3149,32 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "getMonthlyTime",
+    value: // 月間時間情報を取得
+    function getMonthlyTime(workId) {
+      var _this3 = this;
+
+      fetch("http://0.0.0.0:8000/api/monthlyTime", {
+        method: 'POST',
+        body: JSON.stringify({
+          id: workId
+        }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(function (res) {
+        return res.text();
+      }).then(function (text) {
+        _this3.setState({
+          monthlyTime: text
+        });
+      });
+    }
+  }, {
     key: "reload",
     value: function reload(workId) {
       this.getTotalTime(workId);
+      this.getMonthlyTime(workId);
     }
   }, {
     key: "render",
@@ -3138,7 +3200,8 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_workShow__WEBPACK_IMPORTED_MODULE_1__.default, {
             workData: this.state.workData,
-            totalTime: this.state.totalTime
+            totalTime: this.state.totalTime,
+            monthlyTime: this.state.monthlyTime
           })
         })]
       });
@@ -3220,7 +3283,10 @@ var WorkShow = /*#__PURE__*/function (_React$Component) {
           children: this.props.workData.information
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
           className: "h4 m-2",
-          children: ["TotalTime\uFF1A", this.props.totalTime]
+          children: ["\u5408\u8A08\uFF1A", this.props.totalTime]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          className: "h4 m-2",
+          children: ["\u6708\u9593\uFF1A", this.props.monthlyTime]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_calendarItem__WEBPACK_IMPORTED_MODULE_1__.default, {})]
       });
 
