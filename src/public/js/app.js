@@ -2421,7 +2421,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
               switch (_context.prev = _context.next) {
                 case 0:
                   _context.next = 2;
-                  return fetch("http://0.0.0.0:8000/api/loginUser");
+                  return fetch("/api/loginUser");
 
                 case 2:
                   userdata = _context.sent;
@@ -2431,7 +2431,7 @@ var Home = /*#__PURE__*/function (_React$Component) {
                 case 5:
                   user = _context.sent;
                   _context.next = 8;
-                  return fetch("http://0.0.0.0:8000/api/userWorks");
+                  return fetch("/api/userWorks");
 
                 case 8:
                   workData = _context.sent;
@@ -2768,7 +2768,7 @@ var CalendarItem = /*#__PURE__*/function (_React$Component) {
                 var clickDay = year + '-' + month + '-' + day; // 1日の時間情報を取得
 
                 console.log(clickDay);
-                fetch("http://0.0.0.0:8000/api/dayTimes", {
+                fetch("/api/dayTimes", {
                   method: 'POST',
                   body: JSON.stringify({
                     id: _this.props.workData.id,
@@ -3094,6 +3094,10 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this);
 
     _defineProperty(_assertThisInitialized(_this), "onChangeData", function (e) {
+      if (e.target.value == '選択してください') {
+        return;
+      }
+
       var workId = e.target.value;
 
       _this.getTotalTime(workId);
@@ -3124,7 +3128,7 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
     value: function getTotalTime(workId) {
       var _this2 = this;
 
-      fetch("http://0.0.0.0:8000/api/totalTime", {
+      fetch("/api/totalTime", {
         method: 'POST',
         body: JSON.stringify({
           id: workId
@@ -3146,7 +3150,7 @@ var WorkIndex = /*#__PURE__*/function (_React$Component) {
     function getMonthlyTime(workId) {
       var _this3 = this;
 
-      fetch("http://0.0.0.0:8000/api/monthlyTime", {
+      fetch("/api/monthlyTime", {
         method: 'POST',
         body: JSON.stringify({
           id: workId
