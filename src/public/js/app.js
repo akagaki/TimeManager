@@ -2927,8 +2927,9 @@ var WorkAdd = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        className: "d-flex flex-row-reverse",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("small", {
-          className: "btn btn-light bg-white  btn-sm shadow-sm m-1",
+          className: "btn btn-light bg-white  btn-sm shadow-sm",
           onClick: function onClick() {
             _this2.handleClickOpen();
           },

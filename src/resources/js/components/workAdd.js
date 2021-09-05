@@ -63,8 +63,8 @@ class WorkAdd extends React.Component {
   // NewWorkボタン
   workCreate(){
     return(
-      <div>
-        <small className="btn btn-light bg-white  btn-sm shadow-sm m-1" onClick={() => {this.handleClickOpen()}}>NewWork　<i className="fas fa-plus"></i></small>
+      <div className="d-flex flex-row-reverse">
+        <small className="btn btn-light bg-white  btn-sm shadow-sm" onClick={() => {this.handleClickOpen()}}>NewWork　<i className="fas fa-plus"></i></small>
       </div>
     )
   }
