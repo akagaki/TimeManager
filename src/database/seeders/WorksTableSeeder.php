@@ -18,19 +18,21 @@ class WorksTableSeeder extends Seeder
     {
         
         # テストデータ挿入
-            DB::table('works')->insert([
+                $work = new Work(
                 [
                     'user_id'    => 1,
                     'name'    => 'ウォーキング',
                     'information'    => '健康のため毎朝１時間ウォーキング',
-                    'interval' => '00:30:00',
-                ],
+                    'interval' => '00:30:00'
+                ]);
+                $work->save();
+                $work = new Work(
                 [
                     'user_id'    => 1,
                     'name'    => 'プログラミング学習',
                     'information'    => '基礎文法の習得',
-                    'interval' => '01:00:00',
-                ]
+                    'interval' => '01:00:00'
                 ]);
-    }
+                $work->save();
+    }              
 }
