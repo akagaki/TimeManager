@@ -22,6 +22,11 @@ class RecordFactory extends Factory
     public function definition()
     {
         return [
+            'user_id'    => '1',
+            'work_id' => '1',
+            'elapsed_time' => $this->faker->time(),
+            'created_at' => $this->faker->date(),
+            'updated_at' => $this->faker->date(),
         ];
     }
 }
